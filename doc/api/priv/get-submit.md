@@ -1,4 +1,4 @@
-Навигация: [Главная страница](../../Main_Page.md)/[Система ejudge](../../Система_ejudge.md)/[Использование](../../Использование.md)/[API](../API.md)/[get-submit (привилегированный)](get-submit)
+Навигация: [Главная страница](../../Main_Page.md)/[Система ejudge](../../Система_ejudge.md)/[Использование](../../Использование.md)/[API](../API.md)/[get-submit (привилегированный)](get-submit.md)
 
 Запрос возвращает информацию о посылке, отправленной с помощью
 submit-run-input
@@ -18,45 +18,47 @@ Response content type: `application/json`
 
 В случае ошибки возвращается JSON:
 
-`{`  
-`  "ok": false,`  
-`  "server_time": UNIX-TIMESTAMP,`  
-`  "action": "get-submit",`  
-`  "error": {`  
-`    "num": ERROR-CODE,`  
-`    "symbol": ERROR-SYMBOL,`  
-`    "message": ERROR-MESSAGE`  
-`  }`  
-`}`
+```jsonc
+{
+  "ok": false,
+  "server_time": 123,          // UNIX-TIMESTAMP
+  "action": "get-submit",
+  "error": {
+    "num": 123,                // ERROR-CODE,
+    "symbol": "ERROR-SYMBOL",
+    "message": "ERROR-MESSAGE"
+  }
+}
+```
 
 В случае успеха возвращается JSON:
 
-```json
+```jsonc
 {  
   "ok": true,
   "result": {
-    "submit_id": ID,
-    "user_id": USER-ID,
-    "prob_id": PROB-ID,
-    "lang_id": LANG-ID,
-    "ext_user_kind": EXT-USER-KIND,
-    "ext_user": EXT-USER,
-    "notify_driver": NOTIFY-DRIVER,
-    "notify_kind" : NOTIFY-KIND,
-    "notify_queue" : NOTIFY-QUEUE,
-    "status": STATUS,
-    "status_str": STATUS-SHORT-STR,
-    "compiler_output": COMPILER-MESSAGES,
-    "test_checker_output": TEST-CHECKER-MESSAGES,
-    "time": CPU-TIME,
-    "real_time": REAL-TIME,
-    "exit_code": PROCESS-EXIT-CODE,
-    "term_signal": TERMINATION-SIGNAL,
-    "max_memory_used": VIRT-MEM-USE,
-    "max_rss": MEMORY-USE,
-    "input": INPUT,
-    "output": OUTPUT-TEXT,
-    "error": ERROR-TEXT
+    "submit_id": 1,                                 // SUBMIT ID
+    "user_id": 1,                                   // USER-ID
+    "prob_id": 1,                                   // PROB-ID
+    "lang_id": 1,                                   // LANG-ID
+    "ext_user_kind": "EXT-USER-KIND",
+    "ext_user": "EXT-USER",
+    "notify_driver": "NOTIFY-DRIVER",
+    "notify_kind" : "NOTIFY-KIND",
+    "notify_queue" : "NOTIFY-QUEUE",
+    "status": 0,                                    // STATUS
+    "status_str": "STATUS-SHORT-STR",
+    "compiler_output": "COMPILER-MESSAGES",
+    "test_checker_output": "TEST-CHECKER-MESSAGES",
+    "time": 1,                                      // CPU-TIME (millis)
+    "real_time": 1,                                 // REAL-TIME (millis)
+    "exit_code": 0,                                 // PROCESS-EXIT-CODE
+    "term_signal": 0,                               // TERMINATION-SIGNAL
+    "max_memory_used": 1024,                        // VIRT-MEM-USE (bytes)
+    "max_rss": 1024,                                // MEMORY-USE (bytes)
+    "input": "INPUT",
+    "output": "OUTPUT-TEXT",
+    "error": "ERROR-TEXT"
   }  
 }
 ```
